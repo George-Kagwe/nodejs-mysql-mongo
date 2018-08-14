@@ -86,18 +86,34 @@
 // });
 
 
- //making a query in mongodb
+ // 6 .making a query in mongodb
 
- var MongoClient = require('mongodb').MongoClient;
- var url ="mongodb://localhost:27017/";
+//  var MongoClient = require('mongodb').MongoClient;
+//  var url ="mongodb://localhost:27017/";
 
- MongoClient.connect(url,function(err,db){
-     if(err) throw err;
-     var dbo =db.db("great");
-     var query ={address:"Kiambu"};
-     dbo.collection("customers").find(query).toArray(function(err,result){
-         if(err) throw err;
-         console.log(result);
-         db.close();
-     });
- });
+//  MongoClient.connect(url,function(err,db){
+//      if(err) throw err;
+//      var dbo =db.db("great");
+//      var query ={address:"Kiambu"};
+//      dbo.collection("customers").find(query).toArray(function(err,result){
+//          if(err) throw err;
+//          console.log(result);
+//          db.close();
+//      });
+//  });
+
+// 7 sort
+
+var MongoClient = require('mongodb').MongoClient;
+var url="mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err,db){
+    if(err) throw err;
+    var dbo =db.db("great");
+    var mysort ={name:1};
+    dbo.collection("customers").find().sort(mysort).toArray(function(arr,result){
+        console.log(result);
+        db.close();
+    });
+   
+});
